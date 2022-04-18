@@ -1,9 +1,12 @@
-import { workspaceRoot } from '@nrwl/workspace/src/utils/app-root';
+import { workspaceLayout, workspaceRoot } from '@nrwl/devkit';
+import { join } from 'path';
+
 import { getResolveRequest } from './metro-resolver';
 
 interface WithNxOptions {
   debug?: boolean;
   extensions?: string[];
+  projectRoot?: string;
 }
 
 export function withNxMetro(config: any, opts: WithNxOptions = {}) {
@@ -11,8 +14,13 @@ export function withNxMetro(config: any, opts: WithNxOptions = {}) {
   if (opts.debug) process.env.NX_REACT_NATIVE_DEBUG = 'true';
   if (opts.extensions) extensions.push(...opts.extensions);
 
-  // Set the root to workspace root so we can resolve modules and assets
-  config.projectRoot = workspaceRoot;
+  config.projectRoot = opts.projectRoot || workspaceRoot;
+
+  const watchFolders = config.watchFolders || [];
+  config.watchFolders = watchFolders.concat([
+    join(workspaceRoot, 'node_modules'),
+    join(workspaceRoot, workspaceLayout().libsDir),
+  ]);
 
   // Add support for paths specified by tsconfig
   config.resolver = {
