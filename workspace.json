@@ -63,6 +63,38 @@
     "nx-dev-ui-member-card": "nx-dev/ui-member-card",
     "nx-dev-ui-sponsor-card": "nx-dev/ui-sponsor-card",
     "nx-plugin": "packages/nx-plugin",
+    "packages-directus": {
+      "root": "packages/directus",
+      "sourceRoot": "packages/directus/src",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/js:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist//packages/directus",
+            "main": "packages/directus/src/index.ts",
+            "tsConfig": "packages/directus/tsconfig.lib.json",
+            "assets": ["packages/directus/*.md"]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["packages/directus/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/directus"],
+          "options": {
+            "jestConfig": "packages/directus/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "react": "packages/react",
     "react-native": "packages/react-native",
     "storybook": "packages/storybook",
