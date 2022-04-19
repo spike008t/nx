@@ -1,0 +1,8 @@
+{
+  "githubRoot": "https://github.com/nrwl/nx/blob/master",
+  "name": "directus",
+  "root": "/packages/directus",
+  "source": "/packages/directus/src",
+  "generators": [],
+  "executors": []
+}

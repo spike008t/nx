@@ -89,6 +89,11 @@
     "schemas": { "executors": [], "generators": [] }
   },
   {
+    "name": "directus",
+    "path": "generated/packages/directus.json",
+    "schemas": { "executors": [], "generators": [] }
+  },
+  {
     "name": "eslint-plugin-nx",
     "path": "generated/packages/eslint-plugin-nx.json",
     "schemas": { "executors": [], "generators": [] }
